@@ -1,113 +1,64 @@
-# CareerCanvas – AI Job Assistant (RAG-Based System)
+# CareerCanvas – AI Job Assistant
 
-CareerCanvas is an AI-powered job search assistant that leverages Retrieval-Augmented Generation (RAG) to provide intelligent job recommendations and answer user queries based on relevant job data.
+CareerCanvas is an AI-powered job search assistant built using **Retrieval-Augmented Generation (RAG)**. It combines semantic search, vector embeddings, an LLM, and backend APIs to help users discover relevant job opportunities and get contextual answers about job postings.
 
-This project demonstrates how modern AI systems combine LLMs, vector search, and backend APIs to build real-world applications.
+The project demonstrates how modern AI technologies can be integrated into a real-world job discovery and recommendation system.
 
-## Images
+---
 
-![Alt text](https://github.com/shank250/CareerCanvas-msft-raghack/blob/main/Images/Intro1.png)
+## 🚀 Features
 
+### 🔎 Intelligent Job Search
+Search for relevant job opportunities using natural-language queries based on skills, experience, qualifications, and preferences.
 
-![Alt text](https://github.com/shank250/CareerCanvas-msft-raghack/blob/main/Images/Query1.png)
+### 🤖 AI-Powered Job Recommendations
+Retrieve relevant job postings based on semantic similarity rather than relying only on keyword matching.
 
-## My Contribution
+### 💬 Job Q&A
+Ask questions about job postings, including:
 
-This project focuses on building and enhancing an AI-powered job assistant by implementing and refining the core RAG pipeline, backend logic, and LLM integration to deliver intelligent job recommendations and query responses.
+- Required skills
+- Qualifications
+- Experience requirements
+- Job responsibilities
+- Other relevant job details
 
-Key areas I focused on:
+### 🧠 Retrieval-Augmented Generation
+The system uses a RAG pipeline to:
 
-- Understanding and working with the RAG pipeline
-- Backend logic for job search and query handling
-- Integration with LLM-based response generation
-- Improving clarity of data flow and system design
+1. Process the user's query
+2. Generate/query relevant vector representations
+3. Retrieve relevant job information
+4. Provide the retrieved context to the LLM
+5. Generate a contextual response
 
-## Features
+### 🔗 Backend API
+A Spring Boot backend provides REST APIs for job search and AI-powered query handling.
 
-- **Job Search**: Users can search for jobs based on their experience, skills, and preferences.
-- **Job Recommendations**: The system suggests relevant jobs tailored to a user’s profile.
-- **Q&A System**: Users can ask questions about job postings, such as required qualifications, experience, or job responsibilities, and get instant answers.
-- **RAG Integration**: Retrieval-Augmented Generation is used to enhance the relevance of search results by combining real-time search and pre-trained language models.
-  
-## Technology Stack
+---
 
-- **Azure OpenAI**: Used for generating embeddings and enhancing natural language understanding.
-- **Azure AI Search**: Provides vector-based search capabilities to quickly retrieve relevant job postings based on embeddings.
-- **Azure PostgreSQL Vector Database**: Stores job data with vector embeddings for efficient searching.
-- **Java**: Core programming language for the backend.
-- **Spring Boot**: Framework for building and managing the backend REST API.
+## 🏗️ System Architecture
 
-## Requirements
-
-- Java 21 or later
-- Maven for dependency management
-- Azure account with the following services:
-  - Azure OpenAI
-  - Azure AI Search
-  - Azure PostgreSQL
-- PostgreSQL with the `pgvector` extension installed
-
-## Setup Instructions
-
-### 1. Clone the Repository
-
-Clone the project repository:
-
-git clone [https://github.com/shivamsingh0017/CareerCanvas-AI-Job-Assistant.git](https://github.com/shivamsingh0017/CareerCanvas-AI-Job-Assistant.git)
-
-Navigate to the project directory:
-
-cd job-finder-chatbot
-
-### 2. Configure Database
-
-- Set up **Azure PostgreSQL** and enable the `pgvector` extension for handling vector-based data.
-- Update your PostgreSQL credentials in the **application.properties** or **application.yml** file in your Spring Boot project.
-
-Example properties:
-
-spring.datasource.url=jdbc:postgresql://<db-url>:5432/<db-name>
-spring.datasource.username=<your-username>
-spring.datasource.password=<your-password>
-
-### 3. Set Up Azure AI Search and OpenAI
-
-1. Create an **Azure OpenAI** and **Azure AI Search** resource.
-2. Add your **API keys** and **Endpoint URLs** to your Spring Boot application properties.
-
-Example:
-
-azure.openai.api-key=<your-openai-api-key>
-azure.search.endpoint=<your-azure-search-endpoint>
-azure.search.api-key=<your-search-api-key>
-
-### 4. Run the Spring Boot Application
-
-Build and run the Spring Boot application with:
-
-mvn clean install
-mvn spring-boot:run
-
-### 5. APIs
-
-The application exposes the following APIs:
-
-- **/search-jobs**: Allows users to search for jobs based on keywords, experience, and qualifications.
-- **/ask-question**: Users can ask questions related to specific job postings and get instant responses.
-
-### 6. Embedding Data
-
-- During job posting ingestion, embeddings are computed using **Azure OpenAI** and stored in the vector column in **Azure PostgreSQL**.
-- Queries are transformed into embeddings by **Azure AI Search** to retrieve the most relevant job postings.
-
-## Future Enhancements
-
-- Support for multiple languages for job searches and queries.
-- Expand the recommendation engine with more advanced ML models.
-- Add user authentication for personalized job alerts.
-
-## License
-
-This project is licensed under the MIT License. 
-
-Feel free to contribute and make improvements!
+```text
+                 User Query
+                     │
+                     ▼
+              Spring Boot API
+                     │
+                     ▼
+              Query Processing
+                     │
+                     ▼
+             Vector / Semantic Search
+                     │
+                     ▼
+             Relevant Job Data
+                     │
+                     ▼
+              RAG Context Builder
+                     │
+                     ▼
+                Azure OpenAI
+                     │
+                     ▼
+             AI-Generated Response
